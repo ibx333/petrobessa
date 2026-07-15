@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rede Petrobessa — Energia que Conecta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red:          #DD1D21;
+      --red-dark:     #b01419;
+      --yellow:       #FBCE07;
+      --yellow-light: #fde96a;
+      --ink:          #1d1d1f;
+      --graphite:     #707070;
+      --fog:          #f5f5f7;
+      --snow:         #ffffff;
+      --silver-mist:  #e8e8ed;
+      --font: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      --radius-card: 28px;
+      --radius-pill: 999px;
+      --page-max: 1200px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--fog); color: var(--ink); -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    .container { max-width: var(--page-max); margin: 0 auto; padding: 0 40px; }
+    section { padding: 100px 0; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--silver-mist);
+      height: 56px;
+      display: flex; align-items: center;
+      transition: background .3s;
+    }
+    .nav-inner {
+      max-width: var(--page-max); margin: 0 auto; padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%;
+    }
+    .nav-logo svg { height: 34px; width: auto; }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: var(--ink); transition: color .15s; }
+    .nav-links a:hover { color: var(--red); }
+    .nav-cta {
+      background: var(--red); color: var(--snow) !important;
+      border-radius: var(--radius-pill);
+      padding: 8px 18px; font-size: 13px; font-weight: 600;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--red-dark); }
+
+    /* ── HERO with real photo ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: flex-end;
+      padding: 0;
+      position: relative;
+      background: url('FotosPosto/IMG_4741.JPEG') center 65% / cover no-repeat;
+      background-color: #000;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.75) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: var(--page-max); margin: 0 auto;
+      padding: 0 40px 90px;
+      width: 100%;
+      color: var(--snow);
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius-pill); padding: 7px 18px;
+      font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.9);
+      margin-bottom: 24px;
+    }
+    .hero-badge span { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); display: inline-block; }
+    .hero-headline {
+      font-size: clamp(48px, 7vw, 84px); font-weight: 800;
+      line-height: 1.02; letter-spacing: -2.2px;
+      max-width: 760px; margin-bottom: 20px;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.4);
+    }
+    .hero-headline em { font-style: normal; color: var(--yellow); }
+    .hero-sub {
+      font-size: 19px; font-weight: 300; color: rgba(255,255,255,0.85);
+      max-width: 520px; margin-bottom: 36px; line-height: 1.5;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--red); color: var(--snow);
+      border-radius: var(--radius-pill); padding: 15px 34px;
+      font-size: 17px; font-weight: 600;
+      transition: background .2s, transform .15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); }
+    .btn-glass {
+      background: rgba(255,255,255,0.12); color: var(--snow);
+      border: 1px solid rgba(255,255,255,0.35);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius-pill); padding: 15px 34px;
+      font-size: 17px; font-weight: 500;
+      transition: background .2s, transform .15s;
+      display: inline-block;
+    }
+    .btn-glass:hover { background: rgba(255,255,255,0.22); transform: translateY(-2px); }
+
+    /* stats strip below hero */
+    .stats-strip {
+      background: var(--red);
+      padding: 0;
+    }
+    .stats-inner {
+      max-width: var(--page-max); margin: 0 auto; padding: 36px 40px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    }
+    .stat { text-align: center; color: var(--snow); }
+    .stat-num { font-size: 44px; font-weight: 800; letter-spacing: -1px; line-height: 1; }
+    .stat-num span { color: var(--yellow); }
+    .stat-label { font-size: 13px; margin-top: 6px; color: rgba(255,255,255,0.8); font-weight: 500; }
+
+    /* ── SECTION HEADERS ── */
+    .section-eyebrow { font-size: 13px; font-weight: 700; color: var(--red); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+    .section-title { font-size: clamp(32px, 4.5vw, 54px); font-weight: 800; color: var(--ink); letter-spacing: -1.4px; line-height: 1.05; margin-bottom: 16px; }
+    .section-sub { font-size: 18px; font-weight: 300; color: var(--graphite); max-width: 580px; line-height: 1.55; }
+
+    /* ── ABOUT (photo + text split) ── */
+    #about { background: var(--snow); }
+    .about-split {
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px;
+      align-items: center;
+    }
+    .about-photo {
+      border-radius: var(--radius-card); overflow: hidden;
+      aspect-ratio: 4/4.4;
+    }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .about-values { display: flex; flex-direction: column; gap: 16px; margin-top: 36px; }
+    .value-row { display: flex; gap: 16px; align-items: flex-start; }
+    .value-icon {
+      min-width: 46px; height: 46px; border-radius: 13px;
+      background: var(--fog);
+      display: flex; align-items: center; justify-content: center; font-size: 21px;
+    }
+    .value-title { font-size: 16px; font-weight: 700; }
+    .value-body { font-size: 14px; color: var(--graphite); line-height: 1.55; margin-top: 2px; }
+
+    .shell-badge {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--yellow); border-radius: var(--radius-pill);
+      padding: 10px 24px; margin-top: 32px;
+      font-size: 14px; font-weight: 700; color: var(--ink);
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--fog); }
+    .services-hero-img {
+      border-radius: var(--radius-card); overflow: hidden;
+      margin-top: 56px; margin-bottom: 24px;
+      max-height: 440px;
+    }
+    .services-hero-img img { width: 100%; height: 440px; object-fit: cover; object-position: center 60%; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .service-card {
+      background: var(--snow); border-radius: 22px; padding: 32px;
+      transition: transform .25s;
+    }
+    .service-card:hover { transform: translateY(-4px); }
+    .service-icon {
+      width: 50px; height: 50px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 23px; margin-bottom: 18px;
+    }
+    .service-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .service-body { font-size: 14px; color: var(--graphite); line-height: 1.6; }
+
+    /* ── GALLERY ── */
+    #gallery { background: var(--snow); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 220px;
+      gap: 14px; margin-top: 56px;
+    }
+    .gallery-item {
+      border-radius: 20px; overflow: hidden; position: relative;
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .5s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item.wide { grid-column: span 2; }
+    .gallery-item.tall { grid-row: span 2; }
+    .gallery-caption {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 40px 18px 14px;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,0.65));
+      color: var(--snow); font-size: 13px; font-weight: 600;
+      opacity: 0; transition: opacity .3s;
+    }
+    .gallery-item:hover .gallery-caption { opacity: 1; }
+
+    /* lightbox */
+    #lightbox {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.92);
+      display: none; align-items: center; justify-content: center;
+      padding: 40px; cursor: zoom-out;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img { max-width: 100%; max-height: 100%; border-radius: 12px; }
+
+    /* ── UNITS ── */
+    #units { background: var(--fog); }
+    .units-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 20px; }
+    .units-legend { display: flex; gap: 20px; }
+    .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--graphite); }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+    .units-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .unit-card {
+      background: var(--snow); border-radius: 20px; padding: 26px;
+      display: flex; align-items: flex-start; gap: 16px;
+      transition: transform .2s;
+    }
+    .unit-card:hover { transform: translateY(-2px); }
+    .unit-dot { min-width: 10px; height: 10px; border-radius: 50%; background: var(--red); margin-top: 6px; }
+    .unit-name { font-size: 16px; font-weight: 700; margin-bottom: 3px; }
+    .unit-address { font-size: 13px; color: var(--graphite); line-height: 1.5; }
+    .units-construction { margin-top: 48px; }
+    .construction-banner {
+      border-radius: var(--radius-card); overflow: hidden;
+      position: relative; margin-bottom: 24px;
+    }
+    .construction-banner img { width: 100%; height: 320px; object-fit: cover; }
+    .construction-banner-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.25) 70%);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 0 48px; color: var(--snow);
+    }
+    .construction-banner-overlay h3 { font-size: 32px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 8px; }
+    .construction-banner-overlay p { font-size: 16px; color: rgba(255,255,255,0.8); max-width: 420px; }
+    .construction-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .construction-card {
+      background: linear-gradient(135deg, var(--ink), #2d2d30);
+      border-radius: 16px; padding: 22px; color: var(--snow);
+    }
+    .construction-name { font-size: 15px; font-weight: 600; }
+    .construction-label { font-size: 12px; color: var(--yellow); margin-top: 4px; font-weight: 500; }
+
+    /* ── TEAM ── */
+    #team { background: var(--snow); }
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 56px; }
+    .team-card {
+      background: var(--fog); border-radius: 22px; overflow: hidden;
+      transition: transform .25s;
+    }
+    .team-card:hover { transform: translateY(-4px); }
+    .team-photo-placeholder {
+      width: 100%; aspect-ratio: 1;
+      background: linear-gradient(135deg, #e0e0e5, #c8c8cd);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 52px;
+    }
+    .team-info { padding: 18px; }
+    .team-name { font-size: 15px; font-weight: 700; }
+    .team-role { font-size: 13px; color: var(--graphite); margin-top: 2px; }
+    .team-unit { font-size: 12px; color: var(--red); font-weight: 600; margin-top: 4px; }
+    .team-upload-prompt {
+      margin-top: 28px; padding: 24px 32px;
+      background: var(--fog); border-radius: 20px;
+      border: 2px dashed var(--silver-mist);
+      text-align: center; color: var(--graphite); font-size: 15px;
+    }
+    .team-upload-prompt strong { color: var(--ink); }
+
+    /* ── CAREERS ── */
+    #careers {
+      position: relative;
+      background: url('FotosPosto/IMG_4727.JPEG') center / cover no-repeat fixed;
+      color: var(--snow);
+    }
+    #careers::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(10,10,12,0.88), rgba(10,10,12,0.93));
+    }
+    #careers .container { position: relative; z-index: 2; }
+    #careers .section-eyebrow { color: var(--yellow); }
+    #careers .section-title { color: var(--snow); }
+    #careers .section-sub { color: rgba(255,255,255,0.7); }
+    .careers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 52px; }
+    .career-benefit {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 24px; background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(8px);
+    }
+    .career-benefit-icon { font-size: 26px; min-width: 38px; }
+    .career-benefit-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .career-benefit-body { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.5; }
+    .career-form {
+      margin-top: 48px; background: rgba(20,20,22,0.75);
+      border-radius: var(--radius-card); padding: 44px;
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(16px);
+    }
+    .career-form h3 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 6px; }
+    .career-form > p { font-size: 15px; color: rgba(255,255,255,0.55); margin-bottom: 30px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7); }
+    .form-group input, .form-group select, .form-group textarea {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px; padding: 13px 16px;
+      font-size: 15px; color: var(--snow); font-family: var(--font);
+      transition: border-color .2s; width: 100%;
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--yellow); }
+    .form-group select option { background: #1d1d1f; color: var(--snow); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .file-upload {
+      border: 2px dashed rgba(255,255,255,0.25); border-radius: 12px;
+      padding: 26px; text-align: center; cursor: pointer;
+      transition: border-color .2s; margin: 14px 0 22px; display: block;
+    }
+    .file-upload:hover { border-color: var(--yellow); }
+    .file-upload p { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 6px; }
+    .file-upload input[type="file"] { display: none; }
+    .btn-submit {
+      background: var(--yellow); color: var(--ink);
+      border-radius: var(--radius-pill); padding: 16px 40px;
+      font-size: 17px; font-weight: 700; border: none; cursor: pointer;
+      transition: background .2s, transform .15s; width: 100%;
+      font-family: var(--font);
+    }
+    .btn-submit:hover { background: var(--yellow-light); transform: translateY(-1px); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--snow); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 52px; }
+    .contact-info { display: flex; flex-direction: column; gap: 22px; }
+    .contact-item { display: flex; gap: 16px; align-items: flex-start; }
+    .contact-icon {
+      width: 44px; height: 44px; background: var(--fog); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 20px;
+      flex-shrink: 0;
+    }
+    .contact-label { font-size: 13px; color: var(--graphite); font-weight: 500; }
+    .contact-value { font-size: 16px; font-weight: 600; margin-top: 2px; }
+    .contact-form-card { background: var(--fog); border-radius: var(--radius-card); padding: 38px; }
+    .contact-form-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 22px; }
+    .contact-field { margin-bottom: 13px; }
+    .contact-field input, .contact-field textarea {
+      width: 100%; background: var(--snow); border: 1px solid var(--silver-mist);
+      border-radius: 12px; padding: 13px 16px; font-size: 15px;
+      font-family: var(--font); color: var(--ink); transition: border-color .2s;
+    }
+    .contact-field input:focus, .contact-field textarea:focus { outline: none; border-color: var(--red); }
+    .contact-field textarea { resize: vertical; min-height: 120px; }
+    .btn-contact {
+      background: var(--red); color: var(--snow);
+      border-radius: var(--radius-pill); padding: 14px 32px;
+      font-size: 16px; font-weight: 600; border: none; cursor: pointer;
+      transition: background .2s; width: 100%; font-family: var(--font);
+    }
+    .btn-contact:hover { background: var(--red-dark); }
+
+    /* ── FOOTER ── */
+    .footer-stripe {
+      height: 6px;
+      background: linear-gradient(90deg, var(--red) 0%, var(--yellow) 50%, var(--red) 100%);
+    }
+    footer { background: var(--ink); color: rgba(255,255,255,0.5); padding: 60px 0 36px; }
+    .footer-top {
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px; padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-logo svg { height: 42px; width: auto; margin-bottom: 14px; }
+    .footer-tagline { font-size: 14px; line-height: 1.6; max-width: 240px; }
+    .footer-col h4 { font-size: 13px; font-weight: 700; color: var(--snow); margin-bottom: 16px; }
+    .footer-col li + li { margin-top: 10px; }
+    .footer-col a { font-size: 13px; color: rgba(255,255,255,0.5); transition: color .15s; }
+    .footer-col a:hover { color: var(--snow); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 28px; font-size: 13px; flex-wrap: wrap; gap: 10px;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .nav-links a:not(.nav-cta) { display: none; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .about-split { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .units-grid { grid-template-columns: 1fr; }
+      .construction-grid { grid-template-columns: 1fr 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .careers-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      #careers { background-attachment: scroll; }
+    }
+    @media (max-width: 600px) {
+      .container { padding: 0 20px; }
+      section { padding: 72px 0; }
+      .hero-content { padding: 0 20px 60px; }
+      .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 260px; }
+      .gallery-item.wide, .gallery-item.tall { grid-column: auto; grid-row: auto; }
+      .footer-top { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      .construction-grid { grid-template-columns: 1fr; }
+      .construction-banner-overlay { padding: 0 24px; }
+      .construction-banner-overlay h3 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo" aria-label="Rede Petrobessa">
+      <svg viewBox="0 0 220 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="16" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="#DD1D21" letter-spacing="1.5">REDE</text>
+        <g transform="translate(0,20)">
+          <path d="M2 18 L14 10 L22 14" fill="#DD1D21"/>
+          <rect x="14" y="6" width="5" height="22" rx="2" fill="#DD1D21"/>
+          <path d="M19 6 Q32 6 32 14 Q32 22 19 22" stroke="#DD1D21" stroke-width="5" fill="none"/>
+        </g>
+        <text x="36" y="46" font-family="Inter,sans-serif" font-size="18" font-weight="800" fill="#DD1D21" letter-spacing="-0.4">PETROBESSA</text>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="#about">Sobre</a>
+      <a href="#services">Serviços</a>
+      <a href="#gallery">Galeria</a>
+      <a href="#units">Unidades</a>
+      <a href="#team">Equipe</a>
+      <a href="#contact">Contato</a>
+      <a href="#careers" class="nav-cta">Enviar Currículo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-badge"><span></span>Parceiro oficial Shell · Goiás</div>
+    <h1 class="hero-headline">Energia que <em>conecta</em> pessoas.</h1>
+    <p class="hero-sub">Postos modernos, combustível Shell certificado e atendimento que trata cada cliente como parte da família Petrobessa.</p>
+    <div class="hero-actions">
+      <a href="#units" class="btn-primary">Encontre um posto</a>
+      <a href="#careers" class="btn-glass">Trabalhe conosco</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-num">10</div><div class="stat-label">Unidades ativas</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Em construção</div></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Cidades atendidas</div></div>
+    <div class="stat"><div class="stat-num">100<span>%</span></div><div class="stat-label">Combustível certificado</div></div>
+  </div>
+</div>
+
+<!-- ═══ SOBRE ═══ -->
+<section id="about">
+  <div class="container">
+    <div class="about-split">
+      <div class="about-photo reveal">
+        <img src="FotosPosto/IMG_4757.JPEG" alt="Posto Petrobessa Caoa à noite, com paisagismo e pista iluminada" loading="lazy" />
+      </div>
+      <div class="reveal">
+        <p class="section-eyebrow">Quem somos</p>
+        <h2 class="section-title">Construída em Goiás, feita para você.</h2>
+        <p class="section-sub">Cada posto Petrobessa é planejado nos mínimos detalhes — da pista impecável ao paisagismo — porque acreditamos que abastecer deve ser uma experiência de confiança e bem-estar.</p>
+        <div class="about-values">
+          <div class="value-row">
+            <div class="value-icon">🛡️</div>
+            <div>
+              <div class="value-title">Qualidade garantida</div>
+              <div class="value-body">Combustíveis certificados Shell com rigoroso controle de qualidade em todas as unidades.</div>
+            </div>
+          </div>
+          <div class="value-row">
+            <div class="value-icon">🤝</div>
+            <div>
+              <div class="value-title">Conexão com o cliente</div>
+              <div class="value-body">Atendimento humano e próximo — aqui você é recebido pelo nome, não por um número.</div>
+            </div>
+          </div>
+          <div class="value-row">
+            <div class="value-icon">🚀</div>
+            <div>
+              <div class="value-title">Futuro otimista</div>
+              <div class="value-body">10 unidades ativas, 6 em construção e um plano sólido de expansão por todo o estado.</div>
+            </div>
+          </div>
+        </div>
+        <div class="shell-badge">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="14" r="14" fill="#DD1D21"/>
+            <path d="M14 4 C9 4 5 8.5 5 14 C5 18 7.5 21.5 11 23 L14 14 L17 23 C20.5 21.5 23 18 23 14 C23 8.5 19 4 14 4Z" fill="#FBCE07"/>
+          </svg>
+          Parceiro Oficial Shell
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVIÇOS ═══ -->
+<section id="services">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow">O que oferecemos</p>
+      <h2 class="section-title">Tudo que seu veículo precisa.</h2>
+    </div>
+    <div class="services-hero-img reveal">
+      <img src="FotosPosto/IMG_4768.JPEG" alt="Bombas de combustível Shell na pista Petrobessa" loading="lazy" />
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-icon">⛽</div>
+        <div class="service-title">Combustíveis Shell</div>
+        <div class="service-body">Gasolina comum e aditivada, etanol e diesel com a tecnologia e a qualidade da marca Shell.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛻</div>
+        <div class="service-title">Diesel S-10 e Comum</div>
+        <div class="service-body">Pistas amplas para caminhões e veículos pesados, com abastecimento rápido e seguro.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏪</div>
+        <div class="service-title">Conveniência</div>
+        <div class="service-body">Lojas de conveniência e produtos automotivos selecionados nas unidades da rede.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💳</div>
+        <div class="service-title">Pagamento facilitado</div>
+        <div class="service-body">Cartões de todas as bandeiras, Pix e dinheiro — do seu jeito, sem complicação.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔋</div>
+        <div class="service-title">Calibragem e ar</div>
+        <div class="service-body">Calibragem de pneus com equipamentos modernos, disponível sem custo adicional.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🕐</div>
+        <div class="service-title">Estrutura moderna</div>
+        <div class="service-body">Postos novos, bem iluminados e seguros — projetados para o seu conforto a qualquer hora.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALERIA ═══ -->
+<section id="gallery">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow">Nossos postos</p>
+      <h2 class="section-title">Conheça de perto.</h2>
+      <p class="section-sub">Estrutura nova, iluminação impecável e o padrão Shell em cada detalhe. Fotos reais das nossas unidades.</p>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-item wide" onclick="openLightbox('FotosPosto/IMG_4750.JPEG')">
+        <img src="FotosPosto/IMG_4750.JPEG" alt="Vista ampla do posto Petrobessa iluminado à noite" loading="lazy" />
+        <div class="gallery-caption">Pista completa — vista noturna</div>
+      </div>
+      <div class="gallery-item tall" onclick="openLightbox('FotosPosto/IMG_4725.JPEG')">
+        <img src="FotosPosto/IMG_4725.JPEG" alt="Bombas de combustível e demarcação da pista" loading="lazy" />
+        <div class="gallery-caption">Pista demarcada e sinalizada</div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('FotosPosto/IMG_4734.JPEG')">
+        <img src="FotosPosto/IMG_4734.JPEG" alt="Bombas Gilbarco com identidade Petrobessa Caoa" loading="lazy" />
+        <div class="gallery-caption">Equipamentos de última geração</div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('FotosPosto/IMG_4736.JPEG')">
+        <img src="FotosPosto/IMG_4736.JPEG" alt="Bomba de combustível Petrobessa Caoa" loading="lazy" />
+        <div class="gallery-caption">Identidade Petrobessa Caoa</div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('FotosPosto/IMG_4738.JPEG')">
+        <img src="FotosPosto/IMG_4738.JPEG" alt="Totem de preços Diesel S-10, Etanol e Gasolina" loading="lazy" />
+        <div class="gallery-caption">Diesel S-10 · Etanol · Gasolina</div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('FotosPosto/IMG_4752.JPEG')">
+        <img src="FotosPosto/IMG_4752.JPEG" alt="Fachada de vidro da loja de conveniência" loading="lazy" />
+        <div class="gallery-caption">Arquitetura moderna</div>
+      </div>
+      <div class="gallery-item wide" onclick="openLightbox('FotosPosto/IMG_4727.JPEG')">
+        <img src="FotosPosto/IMG_4727.JPEG" alt="Cobertura do posto com a faixa Shell iluminada" loading="lazy" />
+        <div class="gallery-caption">Padrão Shell em cada detalhe</div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('FotosPosto/IMG_4763.JPEG')">
+        <img src="FotosPosto/IMG_4763.JPEG" alt="Detalhe da esquadria de vidro refletindo a pista" loading="lazy" />
+        <div class="gallery-caption">Detalhes que fazem a diferença</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- lightbox -->
+<div id="lightbox" onclick="this.classList.remove('open')">
+  <img src="" alt="Foto ampliada" />
+</div>
+
+<!-- ═══ UNIDADES ═══ -->
+<section id="units">
+  <div class="container">
+    <div class="units-header reveal">
+      <div>
+        <p class="section-eyebrow">Nossa rede</p>
+        <h2 class="section-title">Onde você nos encontra.</h2>
+      </div>
+      <div class="units-legend">
+        <div class="legend-item"><span class="legend-dot" style="background:var(--red)"></span>Ativa</div>
+        <div class="legend-item"><span class="legend-dot" style="background:var(--yellow)"></span>Em construção</div>
+      </div>
+    </div>
+
+    <div class="units-grid reveal">
+      <div class="unit-card"><div class="unit-dot"></div><div><div class="unit-name">Petrobessa Catarinense</div><div class="unit-address">BR 060 EIRELI — Anápolis, GO</div></div></div>
+      <div class="unit-card"><div class="unit-dot"></div><div><div class="unit-name">Petrobessa Cerejeiras</div><div class="unit-address">Rodovia BR 153, S/N, KM 1210 — Anápolis, GO</div></div></div>
+      <div class="unit-card"><div class="unit-dot"></div><div><div class="unit-name">Petrobessa Primavera</div><div class="unit-address">Rua JP 1, Quadra 1, Lote 1 — Anápolis, GO</div></div></div>
+      <div class="unit-card"><div class="unit-dot"></div><div><div class="unit-name">Petrobessa Jaiara</div><div class="unit-address">Av. Fernando Costa — Adriana Parque, Anápolis, GO</div></div></div>
+      <div class="unit-card"><div class="unit-dot"></div><div><div class="unit-name">Posto Brasil</div><div class="unit-address">Rodovia BR-153 — Anápolis, GO</div></div></div>
+      <div class="unit-card"><div class="unit-dot"></div><div><div class="unit-name">Petrobessa Santo André</div><div class="unit-address">Av. Belo Horizonte, Qd 4, Lt 1 — Santo André, Anápolis, GO 75125-335</div></div></div>
+      <div class="unit-card"><div class="unit-dot"></div><div><div class="unit-name">Petrobessa Caoa</div><div class="unit-address">Rua das Laranjeiras, Anel Viário — Bairro Industrial, Anápolis, GO</div></div></div>
+      <div class="unit-card"><div class="unit-dot"></div><div><div class="unit-name">Petrobessa Universitário</div><div class="unit-address">R. 242 — Setor Leste Universitário, Goiânia, GO 74603-140</div></div></div>
+      <div class="unit-card"><div class="unit-dot"></div><div><div class="unit-name">Petrobessa Guanabara</div><div class="unit-address">Av. GB 27 — Jardim Guanabara II, Goiânia, GO</div></div></div>
+      <div class="unit-card"><div class="unit-dot"></div><div><div class="unit-name">Petrobessa Bela Vista</div><div class="unit-address">GO-020, Km 71 — Piracanjuba, GO 75640-000</div></div></div>
+    </div>
+
+    <div class="units-construction reveal">
+      <div class="construction-banner">
+        <img src="FotosPosto/IMG_4752.JPEG" alt="Nova unidade Petrobessa em fase final de construção" loading="lazy" />
+        <div class="construction-banner-overlay">
+          <h3>O futuro já está em obras.</h3>
+          <p>Seis novas unidades em construção para levar o padrão Petrobessa ainda mais longe.</p>
+        </div>
+      </div>
+      <div class="construction-grid">
+        <div class="construction-card"><div class="construction-name">Petrobessa Bairro de Lourdes</div><div class="construction-label">🏗️ Em construção</div></div>
+        <div class="construction-card"><div class="construction-name">Petrobessa DAIA 2</div><div class="construction-label">🏗️ Em construção</div></div>
+        <div class="construction-card"><div class="construction-name">Petrobessa São Carlos</div><div class="construction-label">🏗️ Em construção</div></div>
+        <div class="construction-card"><div class="construction-name">Petrobessa Trianon</div><div class="construction-label">🏗️ Em construção</div></div>
+        <div class="construction-card"><div class="construction-name">Petrobessa Jaiara Sul</div><div class="construction-label">🏗️ Em construção</div></div>
+        <div class="construction-card"><div class="construction-name">Petrobessa Aparecida de Goiânia</div><div class="construction-label">🏗️ Em construção</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EQUIPE ═══ -->
+<section id="team">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow">Nossa equipe</p>
+      <h2 class="section-title">As pessoas por trás da Petrobessa.</h2>
+      <p class="section-sub">Nossa equipe é o coração da rede — pessoas dedicadas, treinadas e comprometidas com o melhor atendimento de Goiás.</p>
+    </div>
+    <div class="team-grid reveal">
+      <div class="team-card">
+        <div class="team-photo-placeholder">👨‍💼</div>
+        <div class="team-info">
+          <div class="team-name">Gerente Geral</div>
+          <div class="team-role">Direção Executiva</div>
+          <div class="team-unit">Rede Petrobessa</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-placeholder">👩‍💼</div>
+        <div class="team-info">
+          <div class="team-name">Gerente de Operações</div>
+          <div class="team-role">Operações</div>
+          <div class="team-unit">Anápolis</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-placeholder">👨‍🔧</div>
+        <div class="team-info">
+          <div class="team-name">Supervisor Técnico</div>
+          <div class="team-role">Manutenção</div>
+          <div class="team-unit">Múltiplas unidades</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-placeholder">👩‍🏫</div>
+        <div class="team-info">
+          <div class="team-name">Coordenadora RH</div>
+          <div class="team-role">Recursos Humanos</div>
+          <div class="team-unit">Rede Petrobessa</div>
+        </div>
+      </div>
+    </div>
+    <div class="team-upload-prompt reveal">
+      <strong>Espaço reservado para sua equipe.</strong> Envie as fotos dos gerentes e funcionários para exibirmos aqui, com nome, cargo e unidade.
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CARREIRAS ═══ -->
+<section id="careers">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow">Faça parte</p>
+      <h2 class="section-title">Cresça com a gente.</h2>
+      <p class="section-sub">Com 6 novas unidades em construção, estamos contratando. Buscamos pessoas que compartilham nossos valores: compromisso, respeito e vontade de evoluir.</p>
+    </div>
+    <div class="careers-grid reveal">
+      <div class="career-benefit">
+        <div class="career-benefit-icon">🎓</div>
+        <div>
+          <div class="career-benefit-title">Treinamento constante</div>
+          <div class="career-benefit-body">Capacitação regular e certificações no padrão Shell para todos os colaboradores.</div>
+        </div>
+      </div>
+      <div class="career-benefit">
+        <div class="career-benefit-icon">📈</div>
+        <div>
+          <div class="career-benefit-title">Plano de carreira</div>
+          <div class="career-benefit-body">Com a expansão da rede, há oportunidades reais de crescimento para quem se dedica.</div>
+        </div>
+      </div>
+      <div class="career-benefit">
+        <div class="career-benefit-icon">🤝</div>
+        <div>
+          <div class="career-benefit-title">Ambiente familiar</div>
+          <div class="career-benefit-body">Valorizamos o bem-estar e mantemos um ambiente respeitoso e colaborativo.</div>
+        </div>
+      </div>
+      <div class="career-benefit">
+        <div class="career-benefit-icon">💰</div>
+        <div>
+          <div class="career-benefit-title">Remuneração justa</div>
+          <div class="career-benefit-body">Salários compatíveis com o mercado, benefícios e reconhecimento por desempenho.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="career-form reveal">
+      <h3>Envie seu currículo</h3>
+      <p>Preencha o formulário e nossa equipe de RH entrará em contato.</p>
+      <form id="careerForm" onsubmit="sendForm(event, '✅ Currículo enviado com sucesso!\n\nNossa equipe de RH entrará em contato em breve. Obrigado pelo interesse em fazer parte da Rede Petrobessa!')">
+        <input type="hidden" name="subject" value="Novo currículo — site Petrobessa" />
+        <input type="hidden" name="from_name" value="Site Rede Petrobessa" />
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nome completo *</label>
+            <input type="text" name="Nome" placeholder="Seu nome" required />
+          </div>
+          <div class="form-group">
+            <label>E-mail *</label>
+            <input type="email" name="email" placeholder="seuemail@exemplo.com" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Telefone / WhatsApp *</label>
+            <input type="tel" name="Telefone" placeholder="(62) 9 0000-0000" required />
+          </div>
+          <div class="form-group">
+            <label>Cidade de residência *</label>
+            <input type="text" name="Cidade" placeholder="Ex: Anápolis, GO" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Área de interesse</label>
+            <select name="Area de interesse">
+              <option value="">Selecione uma área</option>
+              <option>Atendimento ao cliente / Pista</option>
+              <option>Caixa / Conveniência</option>
+              <option>Gerência / Supervisão</option>
+              <option>Manutenção / Técnico</option>
+              <option>Administrativo / RH</option>
+              <option>Outra</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Unidade de preferência</label>
+            <select name="Unidade de preferencia">
+              <option value="">Qualquer unidade</option>
+              <option>Petrobessa Catarinense</option>
+              <option>Petrobessa Cerejeiras</option>
+              <option>Petrobessa Primavera</option>
+              <option>Petrobessa Jaiara</option>
+              <option>Posto Brasil</option>
+              <option>Petrobessa Santo André</option>
+              <option>Petrobessa Caoa</option>
+              <option>Petrobessa Universitário</option>
+              <option>Petrobessa Guanabara</option>
+              <option>Petrobessa Bela Vista</option>
+              <option>Novas unidades (em construção)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Sobre você</label>
+          <textarea name="Sobre o candidato" placeholder="Fale um pouco sobre sua experiência e por que quer fazer parte da Petrobessa..."></textarea>
+        </div>
+        <label class="file-upload" for="curriculo">
+          <input type="file" id="curriculo" name="curriculo" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" />
+          <div style="font-size:26px;">📎</div>
+          <strong style="font-size:15px;">Anexar currículo</strong>
+          <p>PDF, Word ou imagem (JPG/PNG) · Máx. 5 MB</p>
+        </label>
+        <button type="submit" class="btn-submit">Enviar candidatura →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTATO ═══ -->
+<section id="contact">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow">Fale conosco</p>
+      <h2 class="section-title">Estamos aqui para você.</h2>
+      <p class="section-sub">Dúvidas, parcerias ou sugestões? Fale com a nossa equipe.</p>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Sede administrativa</div>
+            <div class="contact-value">Anápolis, Goiás — Brasil</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Telefone / WhatsApp</div>
+            <div class="contact-value">(62) 9 0000-0000</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-label">E-mail</div>
+            <div class="contact-value">contato@petrobessa.com.br</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-label">Horário administrativo</div>
+            <div class="contact-value">Seg–Sex, 8h às 18h</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-card">
+        <h3>Envie uma mensagem</h3>
+        <form onsubmit="sendForm(event, '✅ Mensagem enviada!\n\nRetornaremos em breve. Obrigado por entrar em contato com a Rede Petrobessa.')">
+          <input type="hidden" name="subject" value="Nova mensagem de contato — site Petrobessa" />
+          <input type="hidden" name="from_name" value="Site Rede Petrobessa" />
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+          <div class="contact-field"><input type="text" name="Nome" placeholder="Seu nome" required /></div>
+          <div class="contact-field"><input type="email" name="email" placeholder="Seu e-mail" required /></div>
+          <div class="contact-field"><input type="text" name="Assunto" placeholder="Assunto" /></div>
+          <div class="contact-field"><textarea name="Mensagem" placeholder="Sua mensagem..."></textarea></div>
+          <button type="submit" class="btn-contact">Enviar mensagem</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<div class="footer-stripe"></div>
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          <svg viewBox="0 0 200 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="14" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#DD1D21" letter-spacing="1">REDE</text>
+            <g transform="translate(0,16)">
+              <path d="M2 16 L12 9 L20 13" fill="#DD1D21"/>
+              <rect x="12" y="5" width="4" height="20" rx="1.5" fill="#DD1D21"/>
+              <path d="M16 5 Q28 5 28 13 Q28 21 16 21" stroke="#DD1D21" stroke-width="4" fill="none"/>
+            </g>
+            <text x="32" y="40" font-family="Inter,sans-serif" font-size="16" font-weight="800" fill="#DD1D21" letter-spacing="-0.3">PETROBESSA</text>
+          </svg>
+        </div>
+        <p class="footer-tagline">Energia que conecta pessoas. Parceiro oficial Shell em Goiás.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#about">Sobre nós</a></li>
+          <li><a href="#services">Serviços</a></li>
+          <li><a href="#gallery">Galeria</a></li>
+          <li><a href="#units">Nossas unidades</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Carreiras</h4>
+        <ul>
+          <li><a href="#careers">Trabalhe conosco</a></li>
+          <li><a href="#careers">Enviar currículo</a></li>
+          <li><a href="#team">Nossa equipe</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="#contact">Fale conosco</a></li>
+          <li><a href="#contact">Parcerias</a></li>
+          <li><a href="#contact">Imprensa</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Rede Petrobessa. Todos os direitos reservados.</span>
+      <span>Parceiro oficial Shell · Anápolis, Goiânia &amp; Piracanjuba, GO</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* scroll reveal */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* lightbox */
+  function openLightbox(src) {
+    const lb = document.getElementById('lightbox');
+    lb.querySelector('img').src = src;
+    lb.classList.add('open');
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
+  });
+
+  /* ═══════════════════════════════════════════════════════════════
+     CONFIGURAÇÃO DO FORMULÁRIO — COLE SUA CHAVE DO WEB3FORMS AQUI
+     1. Acesse https://web3forms.com
+     2. Digite o e-mail que deve RECEBER os currículos e mensagens
+     3. Copie a "Access Key" que aparece e cole abaixo (entre as aspas)
+     ═══════════════════════════════════════════════════════════════ */
+  const WEB3FORMS_KEY = "97aacf7b-fce4-43fb-9534-0d1be339f2a4";
+
+  /* file upload label */
+  document.getElementById('curriculo').addEventListener('change', function() {
+    const label = this.parentElement.querySelector('strong');
+    if (this.files.length > 0) label.textContent = '✅ ' + this.files[0].name;
+  });
+
+  /* real submission via Web3Forms (envia por e-mail, com anexo do currículo) */
+  async function sendForm(e, successMsg) {
+    e.preventDefault();
+    const form = e.target;
+
+    if (!WEB3FORMS_KEY || WEB3FORMS_KEY === "COLE_SUA_CHAVE_AQUI") {
+      alert("⚠️ O formulário ainda não foi configurado.\n\nCole sua chave gratuita do Web3Forms no arquivo index.html (procure por WEB3FORMS_KEY).");
+      return;
+    }
+
+    const btn = form.querySelector('button[type="submit"]');
+    const originalLabel = btn.textContent;
+    btn.textContent = "Enviando...";
+    btn.disabled = true;
+
+    const formData = new FormData(form);
+    formData.append("access_key", WEB3FORMS_KEY);
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", { method: "POST", body: formData });
+      const data = await res.json();
+      if (data.success) {
+        alert(successMsg);
+        form.reset();
+        const fileLabel = form.querySelector('.file-upload strong');
+        if (fileLabel) fileLabel.textContent = "Anexar currículo";
+      } else {
+        alert("❌ Não foi possível enviar: " + (data.message || "tente novamente em instantes."));
+      }
+    } catch (err) {
+      alert("❌ Erro de conexão. Verifique sua internet e tente novamente.");
+    } finally {
+      btn.textContent = originalLabel;
+      btn.disabled = false;
+    }
+  }
+</script>
+</body>
+</html>
